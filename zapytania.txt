@@ -1,0 +1,27 @@
+ZADANIE 1
+
+SELECT o.data_operacji, COUNT(p.id_pielegniarki) AS liczba_pielegniarek
+FROM operacja o
+JOIN pielegniarka p ON o.id_pielegniarki = p.id_pielegniarki
+GROUP BY o.data_operacji;
+
+ZADANIE 2
+
+ALTER TABLE choroba
+ADD COLUMN id_pacjenta INT,
+ADD CONSTRAINT fk_choroba_pacjent
+FOREIGN KEY (id_pacjenta) REFERENCES pacjent(id_pacjenta);
+
+ZADANIE 3
+
+ALTER TABLE pacjent
+ADD COLUMN id_choroby INT,
+ADD CONSTRAINT fk_pacjent_choroba
+FOREIGN KEY (id_choroby) REFERENCES choroba(id_choroby);
+
+ZADANIE 4
+
+SELECT o.id_operacji, l.imie, l.nazwisko, l.placa_podstawowa
+FROM operacja o
+JOIN lekarz l ON o.id_lekarza = l.id_lekarza
+ORDER BY o.id_operacji, l.placa_podstawowa DESC;
